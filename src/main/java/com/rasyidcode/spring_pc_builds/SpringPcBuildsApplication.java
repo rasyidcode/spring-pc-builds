@@ -1,13 +1,13 @@
-package com.rasyidcode.spring_rakit_pc;
+package com.rasyidcode.spring_pc_builds;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SpringRakitPcApplication {
+public class SpringPcBuildsApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SpringRakitPcApplication.class, args);
+		SpringApplication.run(SpringPcBuildsApplication.class, args);
 	}
 
 }

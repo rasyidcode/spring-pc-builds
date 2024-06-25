@@ -1,10 +1,10 @@
-package com.rasyidcode.spring_rakit_pc;
+package com.rasyidcode.spring_pc_builds;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class SpringRakitPcApplicationTests {
+class SpringPcBuildsApplicationTests {
 
 	@Test
 	void contextLoads() {
