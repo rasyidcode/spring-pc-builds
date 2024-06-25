@@ -15,25 +15,25 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 public class SecurityConfig {
 
-    @Bean
-    SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        // http.authorizeHttpRequests((authorize) -> authorize.anyRequest().authenticated())
-        http
-                .httpBasic(Customizer.withDefaults())
-                .formLogin((formLogin) -> formLogin.loginPage("/login"));
+	@Bean
+	SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+		http.authorizeHttpRequests((authorize) -> authorize.anyRequest().authenticated())
+				.httpBasic(Customizer.withDefaults())
+				.formLogin((form) -> form
+						.loginPage("/login")
+						.permitAll()
+				)
+				.logout((logout) -> logout.logoutSuccessUrl("/login?logout").permitAll());
 
-        return http.build();
-    }
+		return http.build();
+	}
 
-    @Bean
-    UserDetailsService userDetailsService() {
-        UserDetails userDetails = User.withDefaultPasswordEncoder()
-                .username("admin")
-                .password("secret")
-                .roles("ADMINISTRATOR")
-                .build();
+	@Bean
+	UserDetailsService userDetailsService() {
+		UserDetails userDetails = User.withDefaultPasswordEncoder().username("admin").password("secret")
+				.roles("ADMINISTRATOR").build();
 
-        return new InMemoryUserDetailsManager(userDetails);
-    }
+		return new InMemoryUserDetailsManager(userDetails);
+	}
 
 }
