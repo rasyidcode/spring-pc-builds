@@ -49,6 +49,11 @@ public class ComponentSpecUtilsTest {
                         "\"chipset\": \"B550\"}",
                 MotherboardSpec.class
         );
+
+        assertThat(optionalMotherboardSpec.isPresent()).isTrue();
+        assertThat(optionalMotherboardSpec.get().getSocket()).isEqualTo("AM4");
+        assertThat(optionalMotherboardSpec.get().getFormFactor()).isEqualTo("ATX");
+        assertThat(optionalMotherboardSpec.get().getChipset()).isEqualTo("B550");
     }
 
     @Test
@@ -59,17 +64,36 @@ public class ComponentSpecUtilsTest {
                         "\"speed\": \"3200MHz\"}",
                 RamSpec.class
         );
+
+        assertThat(optionalRamSpec.isPresent()).isTrue();
+        assertThat(optionalRamSpec.get().getCapacity()).isEqualTo("16GB");
+        assertThat(optionalRamSpec.get().getType()).isEqualTo("DDR4");
+        assertThat(optionalRamSpec.get().getSpeed()).isEqualTo("3200MHz");
     }
 
     @Test
     public void test_convertStorageSpecFromJsonToObject() {
-        Optional<StorageSpec> optionalStorageSpec = componentSpecUtils.convertToSpecObject(
+        Optional<StorageSpec.NVMeSsd> optionalStorageSpec = componentSpecUtils.convertToSpecObject(
                 "{\"type\": \"NVMe SSD\", " +
                         "\"capacity\": \"1TB\", " +
                         "\"read_speed\": \"3500MB/s\", " +
                         "\"write_speed\": \"3300MB/s\"}",
-                StorageSpec.class
+                StorageSpec.NVMeSsd.class
         );
+
+//       optionalStorageSpec.ifPresent((storageSpec) -> {
+//           System.out.println("==========");
+//           System.out.println("optionalStorageSpec: " + storageSpec);
+//           System.out.println("optionalStorageSpec: " + storageSpec.getType());
+//           System.out.println("optionalStorageSpec: " + storageSpec.getCapacity());
+//           System.out.println("==========");
+//       });
+
+        assertThat(optionalStorageSpec.isPresent()).isTrue();
+        assertThat(optionalStorageSpec.get().getType()).isEqualTo("NVMe SSD");
+        assertThat(optionalStorageSpec.get().getCapacity()).isEqualTo("1TB");
+        assertThat(optionalStorageSpec.get().getReadSpeed()).isEqualTo("3500MB/s");
+        assertThat(optionalStorageSpec.get().getWriteSpeed()).isEqualTo("3300MB/s");
     }
 
     @Test
