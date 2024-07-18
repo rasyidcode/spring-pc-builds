@@ -10,8 +10,6 @@ public class UserTest {
     public void test_createUserEntity() {
         User user = new User("dtrump", "12345", "dtrump@example.com");
 
-//        System.out.println("user: " + user);
-
         assertThat(user.getId()).isNull();
         assertThat(user.getUsername()).isEqualTo("dtrump");
         assertThat(user.getPassword()).isEqualTo("12345");

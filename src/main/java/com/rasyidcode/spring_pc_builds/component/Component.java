@@ -54,4 +54,5 @@ public class Component {
         this.specs = specs;
         this.price = price;
     }
+
 }
